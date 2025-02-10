@@ -24,15 +24,14 @@ services:
     volumes:
       - ollama:/root/.ollama
     restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              count: 1
 
 volumes:
   open-webui:
   ollama:
-
-deploy:
-  resources:
-    reservations:
-      devices:
-        - driver: nvidia
-          capabilities: [gpu]
-          count: 1
